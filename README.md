@@ -4,4 +4,4 @@
 
 |차수|내용|
 |---|---|
-|1일차|선,원,글씨삽입,<br/> transision(), delay(n), duration(n)<br/>d3.scale().linear().domain([n1,m1]).range([n2,m2])<br/>d3.scale().quntile().domain([,]),ragne[,]|
+|1일차|선,원,글씨삽입,<br/> transision(), delay(n), duration(n)<br/>d3.scale().linear().domain([n1,m1]).range([n2,m2])<br/>d3.scale().quntile().domain([,]).range([,]).clamp(true)|
