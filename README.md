@@ -4,5 +4,4 @@
 
 |차수|내용|
 |---|---|
-|1일차|선,원,글씨삽입,
-transision(), delay(n), duration(n)|
+|1일차|선,원,글씨삽입,<br/> transision(), delay(n), duration(n)|
