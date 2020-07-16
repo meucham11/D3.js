@@ -92,7 +92,7 @@
 
 <footer>
 	<script>
-		var yScale = d3.scale.linear().domain([0,24500]).range([0,100]);
+		var yScale = d3.scale.linear().domain([0,24500]).range([0,100]).clamp(true);
 
 
 		d3.select("svg")
@@ -113,4 +113,66 @@
 
 </html>
 
+```
+
+
+막대그래프 스케일링 및 여백
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>105p</title>
+	<script src="d3.v3.min.js" type="text/javascript"></script>
+</head>
+
+<style>
+  svg {
+    height: 500px;
+    width: 500px;
+    border: 1px solid gray;
+  }
+</style>
+
+<body>
+<div>
+	<svg>
+		
+	</svg>	
+</div>
+
+</body>
+
+<footer>
+	<script>
+		d3.csv("cities.csv",function(error,data){dataViz(data);});
+
+		function dataViz(incomingData){
+			var maxPopulation = 
+				d3.max(incomingData, function(el){
+										return parseInt(el.population);
+									 }
+					   );
+			var yScale = d3.scale.linear().domain([0,maxPopulation]).range([0,460]);
+
+			d3.select("svg")
+			.selectAll("rect")
+			.data(incomingData)
+			.enter()
+			.append("rect")
+			.attr("width",50)
+			.attr("height",function(d){return yScale(parseInt(d.population));})
+			.attr("x",function(d,i){return i*60;})
+			.attr("y",function(d){return yScale(maxPopulation)+20-yScale(parseInt(d.population));})
+			.style("fill","blue")
+			.style("stroke","red")
+			.style("stroke-width","1px")
+			.style("opacity",0.25);
+
+
+		};
+
+	</script>
+</footer>
+
+</html>
 ```
