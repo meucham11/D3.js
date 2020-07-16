@@ -11,42 +11,53 @@
     
     <script>
     	d3.select("svg")
-    	.append("line")
-    	.attr("x1",20)
-    	.attr("y1",20)
-    	.attr("x2",400)
-    	.attr("y2",400)
-    	.style("stroke","black")
-    	.style("stroke-width","2px");
+        .append("circle")
+        .attr("r",20)
+        .attr("cx",20)
+        .attr("cy",20)
+        .style("fill","red");
 
-    	d3.select("svg")
-    	.append("text")
-    	.attr("x",20)
-    	.attr("y",20)
-    	.text("HELLO");
+//글씨를 숨김
+        d3.select("svg")
+        .append("text")
+        .attr("id","a")
+        .attr("x",20)
+        .attr("y",20)
+        .style("opacity",0)
+        .text("Hello World")
+
+        d3.select("svg")
+        .append("circle")
+        .attr("r",100)
+        .attr("cx",400)
+        .attr("cy",400)
+        .style("fill","lightblue");
+
+//글씨를 숨김
+        d3.select("svg")
+        .append("text")
+        .attr("id","b")
+        .attr("x",400)
+        .attr("y",400)
+        .style("opacity",0)
+        .text("Uh,hi");
 
 
-    	d3.select("svg")
-    	.append("circle")
-    	.attr("r",20)
-    	.attr("cx",20)
-    	.attr("cy",20)
-    	.style("stroke","yellow")
-    	.style("stroke-width","2px")
-    	.style("fill","red");
+        d3.select("#a")
+        .transition()
+        .delay(1000)
+        .style("opacity",1);
 
-    	d3.select("svg")
-    	.append("circle")
-    	.attr("r",60)
-    	.attr("cx",400)
-    	.attr("cy",400)
-    	.style("fill","pink");
+        d3.select("#b")
+        .transition()
+        .delay(3000)
+        .style("opacity",0.75)
+        .style("font-size","30px");
 
-    	d3.select("svg")
-    	.append("text")
-    	.attr("x",400)
-    	.attr("y",400)
-    	.text("World");
+        d3.selectAll("circle")
+        .transition()
+        .duration(5000)
+        .attr("cy",200);
     </script>
 </body>
 </html>
