@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>81p</title>
+	<script src="d3.v3.min.js" type="text/javascript"></script>
+</head>
+<body>
+	<script>
+		d3.csv("cities.csv", function(data){console.log(data)});
+		d3.json("tweets.json", function(data){console.log(data)});
+
+		d3.select("body").selectAll("div.cities")
+		.data(incomingData)
+		.enter() //요소보다 데이터가 더 많을때 어떻게 할지
+		.append("div")
+		.attr("class","cities")
+		.html(function(d,i) {return d.label;});
+
+
+	</script>
+
+</body>
+</html>
