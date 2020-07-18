@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>161p 산점도</title>
+	<script src="d3.v3.min.js" type="text/javascript"></script>
+</head>
+
+<style>
+	svg{
+		height:550px;
+		width:550px;
+		border:1px solid green;
+	}
+
+line{
+	shape-rendering:crispEdges;
+	stroke:#000;
+}
+
+path.domain{
+	fill:none;
+	stroke:black;
+}
+
+</style>
+
+<body>
+
+<div id="viz">
+  <svg>
+  </svg>
+</div>
+<div id="controls" />
+</div>
+
+
+
+
+</body>
+<footer>
+<script>
+var scatterData = [
+	{friends: 5, salary: 22000}, 
+	{friends: 3, salary: 18000}, 
+	{friends: 10, salary: 88000}, 
+	{friends: 0, salary: 180000}, 
+	{friends: 27, salary: 56000}, 
+	{friends: 8, salary: 74000}
+]
+
+
+//산점도
+var xExtent = d3.extent(scatterData,function(d){return d.friends})
+var yExtent = d3.extent(scatterData,function(d){return d.salary})
+
+var xScale = d3.scale.linear().domain(xExtent).range([0,500]);
+var yScale = d3.scale.linear().domain(yExtent).range([0,500]);
+
+
+
+
+//축
+//ticksize:눈금선 변경
+//ticks 눈금의 개수설정
+var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickSize(500).ticks(16);
+d3.select("svg").append("g").attr("id","xAxisG").call(xAxis);
+
+var yAxis = d3.svg.axis().scale(yScale).orient("right").ticks(4).tickSize(500);
+d3.select("svg").append("g").attr("id","yAxisG").call(yAxis);
+
+d3.select("svg")
+.selectAll("circle")
+.data(scatterData)
+.enter()
+.append("circle")
+.attr("r",5)
+.attr("cx",function(d){return xScale(d.friends)})
+.attr("cy",function(d){return yScale(d.salary)})
+
+
+
+
+
+
+
+</script>
+</footer>
+</html>

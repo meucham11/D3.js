@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>179p</title>
+	<script src="d3.v3.min.js" type="text/javascript"></script>
+</head>
+<style>
+svg{
+	width:500px;
+	height: 500px;
+	border:1px solid green;
+}
+
+
+</style>
+<body>
+<div id="viz">
+	<svg>
+	</svg>
+</div>
+<div id="controls"/>
+</body>
+<footer>
+<script>
+d3.csv("tweetdata.csv",lineChart);
+function lineChart(linedata){
+	var seq_col = linedata.day
+
+	var data_col =
+		d3.data(linedata,function(data){
+			var need_data = d3.keys(data[0]).filter(function(key) {
+				 return key!="day"});
+
+			data.forEach(function(d){
+				d.value = need_data.map(function(n){return {name:n,value:+d[n]} })
+		})
+		})
+			
+			
+	
+	console.log(data_col)
+
+	var Extent_x=d3.extent(seq_col)
+	alert(Extent_x)
+	var Extent_y=d3.extent(data_col)
+	alert(Extent_y)
+
+	//xScale = d3.scale.linear().domain([Extent_x[0],Extent_x[1]+0.5]).range([20,480])
+	//yScale = d3.scale.linear().domain([Extent_y[0],Extent_y[1]+5]).range([480,20])
+};
+</script>
+</footer>
+</html>
